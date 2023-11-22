@@ -5,6 +5,7 @@ import { PlusIcon } from "@heroicons/react/20/solid";
 import classNames from "classnames";
 import ProfilePic from "../Images/profilepic.png";
 import Logo from "../Images/Logo.png";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -41,24 +42,18 @@ const Navbar = () => {
                   >
                     Home
                   </a>
-                  <a
-                    href="www.google.com"
+                  <Link
+                    to="/Experiences"
                     className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
                   >
-                    Travel Guides
-                  </a>
-                  <a
-                    href="www.google.com"
+                    Experiences
+                  </Link>
+                  <Link
+                    to="/Resources"
                     className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
                   >
-                    Hotels
-                  </a>
-                  <a
-                    href="www.google.com"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                  >
-                    Deals
-                  </a>
+                    Resources
+                  </Link>
                 </div>
               </div>
               <div className="flex items-center">
@@ -68,7 +63,7 @@ const Navbar = () => {
                     className="relative inline-flex items-center gap-x-1.5 rounded-md bg-rose-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-400"
                   >
                     <PlusIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
-                    Plan New Trip
+                    <Link to="/TripPlanning"> Plan New Trip </Link>
                   </button>
                 </div>
                 <div className="hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center">
