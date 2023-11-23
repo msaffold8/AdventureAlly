@@ -3,6 +3,7 @@ import Home from "./Pages/Home.js";
 import Experiences from "./Pages/Experiences.js";
 import Resources from "./Pages/Resources.js";
 import TripPlanning from "./Pages/TripPlanning.js";
+import UserProfile from "./Pages/UserProfile.js";
 
 function App() {
   const router = createBrowserRouter([
@@ -21,6 +22,10 @@ function App() {
     {
       path: "/TripPlanning",
       element: <TripPlanning />,
+    },
+    {
+      path: "/UserProfile",
+      element: <UserProfile />,
     },
   ]);
 
