@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <Disclosure as="nav" className="bg-white shadow">
+    <Disclosure as="nav" className="bg-black shadow">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -38,19 +38,19 @@ const Navbar = () => {
                   {/* Current: "border-red-400 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
                   <Link
                     to="/"
-                    className="inline-flex items-center border-b-2 border-red-400 px-1 pt-1 text-sm font-medium text-gray-900"
+                    className="inline-flex items-center border-b-2 border-red-400 px-1 pt-1 text-sm font-medium text-white hover:text-rose-400"
                   >
                     Home
                   </Link>
                   <Link
                     to="/Experiences"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-rose-400"
                   >
                     Experiences
                   </Link>
                   <Link
                     to="/Resources"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-rose-400"
                   >
                     Resources
                   </Link>
@@ -142,30 +142,30 @@ const Navbar = () => {
               <Disclosure.Button
                 as="a"
                 href="#"
-                className="block border-l-4 border-rose-500 bg-rose-50 py-2 pl-3 pr-4 text-base font-medium text-rose-700 sm:pl-5 sm:pr-6"
+                className="block border-l-4 border-rose-500 bg-rose-50 py-2 pl-3 pr-4 text-base font-medium text-rose-400 sm:pl-5 sm:pr-6"
               >
                 Home
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
                 href="#"
-                className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6"
+                className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-white hover:border-gray-300 hover:bg-gray-50 hover:text-black  sm:pl-5 sm:pr-6"
               >
-                Travel Guide
+                Your Trips
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
                 href="#"
-                className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6"
+                className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-white hover:border-gray-300 hover:bg-gray-50 hover:text-black  sm:pl-5 sm:pr-6"
               >
-                Hotels
+                Experiences
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
                 href="#"
-                className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6"
+                className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-white hover:border-gray-300 hover:bg-gray-50 hover:text-black  sm:pl-5 sm:pr-6"
               >
-                Deals
+                Resources
               </Disclosure.Button>
             </div>
             <div className="border-t border-gray-200 pb-3 pt-4">
@@ -178,10 +178,10 @@ const Navbar = () => {
                   />
                 </div>
                 <div className="ml-3">
-                  <div className="text-base font-medium text-gray-800">
+                  <div className="text-base font-medium text-rose-400">
                     Mel Saffold
                   </div>
-                  <div className="text-sm font-medium text-gray-500">
+                  <div className="text-sm font-medium text-white">
                     melsaffold@tesing.com
                   </div>
                 </div>
@@ -190,21 +190,21 @@ const Navbar = () => {
                 <Disclosure.Button
                   as="a"
                   href="#"
-                  className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800 sm:px-6"
+                  className="block px-4 py-2 text-base font-medium text-white hover:bg-gray-100 hover:text-black  sm:px-6"
                 >
                   Your Profile
                 </Disclosure.Button>
                 <Disclosure.Button
                   as="a"
                   href="#"
-                  className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800 sm:px-6"
+                  className="block px-4 py-2 text-base font-medium text-white hover:bg-gray-100 hover:text-black  sm:px-6"
                 >
                   Settings
                 </Disclosure.Button>
                 <Disclosure.Button
                   as="a"
                   href="#"
-                  className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800 sm:px-6"
+                  className="block px-4 py-2 text-base font-medium text-white hover:bg-gray-100 hover:text-black sm:px-6"
                 >
                   Sign out
                 </Disclosure.Button>
