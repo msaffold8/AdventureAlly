@@ -4,11 +4,16 @@ import Experiences from "./Pages/Experiences.js";
 import Resources from "./Pages/Resources.js";
 import TripPlanning from "./Pages/TripPlanning.js";
 import UserProfile from "./Pages/UserProfile.js";
+import Landing from "./Pages/Landing.js";
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
+      element: <Landing />,
+    },
+    {
+      path: "Home",
       element: <Home />,
     },
     {
