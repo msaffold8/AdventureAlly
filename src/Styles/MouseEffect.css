@@ -1,0 +1,12 @@
+.trail { 
+    position: fixed; 
+    height: 20px; 
+    width: 20px; 
+    background-image: url('plane.svg'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+}
+
+
+
