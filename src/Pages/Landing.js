@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import AdventureAlly from "../Images/AdventureAllyHero.png";
+import { Link } from "react-router-dom";
 
 const Landing = () => {
   return (
@@ -18,12 +19,13 @@ const Landing = () => {
             voluptate id. In veniam incididunt ex veniam adipisicing sit.
           </p>
           <div className="mt-6 flex items-center gap-x-6">
-            <a
-              href="www.example.com"
+            <Link
+              to="/TripPlanning"
               className="rounded-md bg-red-400 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-rose-400"
             >
               Start Planning
-            </a>
+            </Link>
+
             <a
               href="www.example.com"
               className="text-sm font-semibold text-gray-900"
