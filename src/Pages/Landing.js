@@ -14,9 +14,9 @@ const Landing = () => {
             Making your travel plans so much easier!
           </h1>
           <p className="mt-4 text-lg leading-8 text-gray-600">
-            Esse id magna consectetur fugiat non dolor in ad laboris magna
-            laborum ea consequat. Nisi irure aliquip nisi adipisicing veniam
-            voluptate id. In veniam incididunt ex veniam adipisicing sit.
+            Let Adventure Ally craft your Itenerary with a touch of fun. Dreamy
+            destinations to stunning stays, We make your travel plans come to
+            life effortlessly.
           </p>
           <div className="mt-6 flex items-center gap-x-6">
             <Link
