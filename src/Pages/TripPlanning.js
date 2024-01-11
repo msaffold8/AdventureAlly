@@ -1,10 +1,9 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-// import { Link } from "react-router-dom";
 
 const destinations = [
   { value: "las-vegas", label: "Las Vegas" },
@@ -23,26 +22,59 @@ const TripPlanner = () => {
   const [selectedDestination, setSelectedDestination] = useState(null);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const [itinerary, setItinerary] = useState("");
 
   const handleDestinationChange = (option) => {
     setSelectedDestination(option);
-    // Handle the destination change (e.g., set it in form state)
   };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!selectedDestination) {
+      alert("Please select a destination");
+      return;
+    }
+
+    const tripData = {
+      destination: selectedDestination.label,
+      startDate: startDate.toISOString().split("T")[0],
+      endDate: endDate.toISOString().split("T")[0],
+    };
+
+    try {
+      const response = await fetch("http://localhost:3000/create-itinerary", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(tripData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      setItinerary(data.itinerary);
+    } catch (error) {
+      console.error("Error fetching itinerary:", error);
+      alert("Failed to fetch itinerary");
+    }
+  };
+
   return (
     <div>
       <Navbar />
       <div className="container mx-auto mt-10 mb-10 p-5">
         <h1 className="text-center font-bold text-2xl mb-5">Plan a new trip</h1>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
               className="block text-black text-sm font-bold mb-2"
               htmlFor="destination"
             >
               Where to?
-              {/* add google places api */}
             </label>
-
             <Select
               className="text-gray-700"
               value={selectedDestination}
@@ -80,7 +112,6 @@ const TripPlanner = () => {
               />
             </div>
           </div>
-          <div className="mb-4"></div>
           <div className="flex items-center justify-between">
             <button
               className="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -90,6 +121,12 @@ const TripPlanner = () => {
             </button>
           </div>
         </form>
+        {itinerary && (
+          <div className="mt-4 p-4 border rounded">
+            <h2 className="font-bold text-xl">Your Itinerary:</h2>
+            <p>{itinerary}</p>
+          </div>
+        )}
       </div>
       <Footer />
     </div>
