@@ -39,7 +39,7 @@ async function generateItinerary(destination, startDate, endDate) {
       { role: "system", content: "You are a helpful assistant." },
       {
         role: "user",
-        content: `Create a detailed travel itinerary for a trip to ${destination} from ${startDate} to ${endDate}. Include places to visit, activities, dining suggestions, and travel tips.`,
+        content: `Create a detailed travel itinerary, for a trip to ${destination} from ${startDate} to ${endDate}. Include places to visit, activities, dining suggestions, and travel tips. do not put any information in the intro or conclusion. maximum 400 characters long.`,
       },
     ],
     model: "gpt-3.5-turbo",
