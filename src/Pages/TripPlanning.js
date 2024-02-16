@@ -23,6 +23,8 @@ const TripPlanner = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [itinerary, setItinerary] = useState("");
+  const [editMode, setEditMode] = useState(false);
+  const [editableItinerary, setEditableItinerary] = useState("");
 
   const handleDestinationChange = (option) => {
     setSelectedDestination(option);
@@ -56,10 +58,24 @@ const TripPlanner = () => {
 
       const data = await response.json();
       setItinerary(data.itinerary);
+      setEditableItinerary(data.itinerary);
+      setEditMode(false);
     } catch (error) {
       console.error("Error fetching itinerary:", error);
       alert("Failed to fetch itinerary");
     }
+  };
+  const toggleEditMode = () => {
+    setEditMode(!editMode);
+    if (!editMode) {
+      setEditableItinerary(itinerary);
+    } else {
+      setItinerary(editableItinerary);
+    }
+  };
+
+  const handleEditChange = (event) => {
+    setEditableItinerary(event.target.value);
   };
 
   return (
@@ -123,8 +139,33 @@ const TripPlanner = () => {
         </form>
         {itinerary && (
           <div className="mt-4 p-4 border rounded">
-            <h2 className="font-bold text-xl">Your Itinerary:</h2>
-            <p>{itinerary}</p>
+            <h2 className="font-bold text-xl mb-4">Your Itinerary:</h2>
+            {!editMode ? (
+              <div>
+                <div className="mb-4 whitespace-pre-line">{itinerary}</div>
+                <button
+                  onClick={toggleEditMode}
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Edit
+                </button>
+              </div>
+            ) : (
+              <div>
+                <textarea
+                  className="form-textarea mt-1 block w-full border rounded"
+                  rows="5"
+                  value={editableItinerary}
+                  onChange={handleEditChange}
+                ></textarea>
+                <button
+                  onClick={toggleEditMode}
+                  className="mt-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Save Changes
+                </button>
+              </div>
+            )}
           </div>
         )}
       </div>

@@ -39,10 +39,18 @@ async function generateItinerary(destination, startDate, endDate) {
       { role: "system", content: "You are a helpful assistant." },
       {
         role: "user",
-        content: `Create a detailed travel itinerary, for a trip to ${destination} from ${startDate} to ${endDate}. Include places to visit, activities, dining suggestions, and travel tips. do not put any information in the intro or conclusion. maximum 400 characters long.`,
+        content: `Craft a meticulously detailed travel itinerary for ${destination}, spanning from ${startDate} to ${endDate}. The itinerary should guide the traveler through each day with time-specific activities, providing a mix of adventure, culture, and culinary experiences. For each activity, include the best time to visit, why it’s recommended, and how long the traveler should spend there. Ensure the itinerary:
+
+        - Starts with an engaging morning activity,
+        - Includes midday meals at local favorites,
+        - Suggests afternoon explorations or leisure activities,
+        - Concludes with evening dining and entertainment options.
+        
+        Emphasize unique local experiences that showcase the destination's culture and natural beauty. The itinerary should flow logically, considering travel time between locations, and offer practical tips to enhance the adventure. Aim for clarity, conciseness, and compelling descriptions to inspire and facilitate an unforgettable journey.`,
       },
     ],
     model: "gpt-3.5-turbo",
+    max_tokens: 100,
   });
 
   return completion.choices[0].message.content;
