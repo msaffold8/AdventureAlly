@@ -32,39 +32,42 @@ const TripPlanner = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!selectedDestination) {
-      alert("Please select a destination");
+    if (!selectedDestination || !startDate || !endDate) {
+      alert("Please select a destination and dates.");
       return;
     }
 
-    const tripData = {
-      destination: selectedDestination.label,
-      startDate: startDate.toISOString().split("T")[0],
-      endDate: endDate.toISOString().split("T")[0],
-    };
+    let detailedItinerary = "";
+    let currentDate = new Date(startDate);
 
-    try {
-      const response = await fetch("http://localhost:3000/create-itinerary", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(tripData),
-      });
+    while (currentDate <= endDate) {
+      let day = currentDate.toISOString().split("T")[0];
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+      try {
+        const response = await fetch("http://localhost:3000/create-itinerary", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ destination: selectedDestination.label, day }),
+        });
+
+        if (!response.ok) throw new Error("Network response was not ok");
+
+        const data = await response.json();
+        detailedItinerary += `Day ${day}:\n${data.itinerary}\n\n`; // Each day's itinerary
+      } catch (error) {
+        console.error("Error fetching itinerary for day", day, ":", error);
+        alert(`Failed to fetch itinerary for ${day}`);
       }
 
-      const data = await response.json();
-      setItinerary(data.itinerary);
-      setEditableItinerary(data.itinerary);
-      setEditMode(false);
-    } catch (error) {
-      console.error("Error fetching itinerary:", error);
-      alert("Failed to fetch itinerary");
+      currentDate.setDate(currentDate.getDate() + 1); // Move to the next day
     }
+
+    setItinerary(detailedItinerary);
+    setEditableItinerary(detailedItinerary);
+    setEditMode(false);
   };
+  
+  
   const toggleEditMode = () => {
     setEditMode(!editMode);
     if (!editMode) {

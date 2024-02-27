@@ -33,24 +33,52 @@ app.post("/create-itinerary", async (req, res) => {
   }
 });
 
-async function generateItinerary(destination, startDate, endDate) {
+async function generateItinerary(destination, day) {
   const completion = await openai.chat.completions.create({
     messages: [
-      { role: "system", content: "You are a helpful assistant." },
+      {
+        role: "system",
+        content:
+          "You are a expert traveler and the coolest travel itenerary creator.",
+      },
       {
         role: "user",
-        content: `Craft a meticulously detailed travel itinerary for ${destination}, spanning from ${startDate} to ${endDate}. The itinerary should guide the traveler through each day with time-specific activities, providing a mix of adventure, culture, and culinary experiences. For each activity, include the best time to visit, why it’s recommended, and how long the traveler should spend there. Ensure the itinerary:
+        content: `Create a detailed itinerary for ${destination} on ${day}. Each recommendation should include a specific time, a brief description, and a link for more information or reservations where applicable. Format the itinerary as follows:
 
-        - Starts with an engaging morning activity,
-        - Includes midday meals at local favorites,
-        - Suggests afternoon explorations or leisure activities,
-        - Concludes with evening dining and entertainment options.
+        Morning Activity:
+        - Activity: [Describe the activity]
+        - Time: [Start time]
+        - Duration: [Duration]
+        - Why it’s recommended: [Reason]
+        - More info: [Link]
         
-        Emphasize unique local experiences that showcase the destination's culture and natural beauty. The itinerary should flow logically, considering travel time between locations, and offer practical tips to enhance the adventure. Aim for clarity, conciseness, and compelling descriptions to inspire and facilitate an unforgettable journey.`,
+        Midday Meal:
+        - Restaurant: [Name]
+        - Time: [Time for lunch]
+        - Recommended dish: [Dish]
+        - Why it’s special: [Reason]
+        - More info: [Link]
+        
+        Afternoon Exploration:
+        - Location: [Place]
+        - Time: [Start time]
+        - Duration: [Duration]
+        - What makes it unique: [Description]
+        - More info: [Link]
+        
+        Evening Leisure:
+        - Activity or Dining: [Description]
+        - Time: [Start time]
+        - Recommended: [Recommendation]
+        - Why it's a must-visit: [Reason]
+        - More info: [Link]
+        
+        Ensure the itinerary is engaging, offering a narrative that guides the traveler through their day with ease and excitement. Each part of the day should connect to the next, creating a memorable experience in ${destination}.`,
       },
     ],
-    model: "gpt-3.5-turbo",
-    max_tokens: 100,
+    model: "gpt-4",
+    max_tokens: 1000,
+    temperature: 0.6,
   });
 
   return completion.choices[0].message.content;
